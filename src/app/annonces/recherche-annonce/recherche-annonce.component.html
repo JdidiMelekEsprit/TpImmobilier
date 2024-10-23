@@ -1,0 +1,25 @@
+<form [formGroup]="formRecherche" (ngSubmit)="onRecherche()">
+    <label for="prix">Prix max :</label>
+    <input id="prix" formControlName="prix">
+  
+    <label for="type">Type de bien :</label>
+    <select id="type" formControlName="type">
+      <option value="appartement">Appartement</option>
+      <option value="maison">Maison</option>
+      <!-- Ajoutez d'autres options -->
+    </select>
+  
+    <button type="submit">Rechercher</button>
+  </form>
+  
+  <div *ngIf="resultats.length > 0">
+    <h2>Résultats de la recherche</h2>
+    <ul>
+      <li *ngFor="let annonce of resultats">
+        <h3>{{ annonce.titre }}</h3>
+        <p>{{ annonce.description }}</p>
+        <a [routerLink]="['/annonces', annonce.id]">Voir plus</a>
+      </li>
+    </ul>
+  </div>
+  
